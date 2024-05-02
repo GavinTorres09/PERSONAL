@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>9th Monthsary</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #ffe6e6;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .envelope-container {
+            position: relative;
+            cursor: pointer;
+            transition: transform 0.5s;
+            margin-top: 30px;
+            perspective: 1000px;
+        }
+
+        .envelope-container:hover {
+            transform: translateY(-10px);
+        }
+
+        .envelope {
+            position: relative;
+            width: 200px;
+            height: 130px;
+            background-color: #f5f5f5;
+            border-radius: 10px;
+            border: 2px solid #333;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transform-origin: bottom center;
+            transform-style: preserve-3d;
+            transition: transform 0.5s;
+        }
+
+        .envelope:hover {
+            transform: translateY(-10px) rotateX(-5deg);
+        }
+
+        .envelope .back {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #f5f5f5;
+            transform: rotateX(-180deg);
+            transition: transform 0.5s;
+            backface-visibility: hidden;
+        }
+
+        .envelope-container.open .envelope .back {
+            transform: rotateX(0deg);
+        }
+
+        .envelope .front {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #f5f5f5;
+            transform: rotateX(0deg);
+            transition: transform 0.5s;
+            z-index: 1;
+            backface-visibility: hidden;
+        }
+
+        .envelope-container.open .envelope .front {
+            transform: rotateX(180deg);
+        }
+
+        .letter {
+            display: none;
+            max-width: 600px;
+            width: 90%;
+            padding: 40px;
+            background-color: #fff;
+            border-radius: 20px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .stamp {
+            position: absolute;
+            top: -30px;
+            right: -30px;
+            width: 100px;
+        }
+
+        h1 {
+            color: #d30000;
+            font-family: 'Sacramento', cursive;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+
+        p {
+            color: #333;
+            font-size: 1.2em;
+            line-height: 1.6;
+            margin-top: 20px;
+        }
+
+        .signature {
+            font-style: italic;
+            color: #666;
+            margin-top: 40px;
+        }
+
+        .click-message {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1.5em;
+    font-family: 'Sacramento', cursive; /* Changed font family to cursive */
+    color: #d30000; /* Changed font color to a deep red */
+    z-index: 1;
+    text-align: center; /* Center-align the text */
+}
+        .envelope-container:hover .click-message {
+            opacity: 1;
+        }
+
+        .heart-icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1;
+            fill: #FF0000;
+            display: none;
+        }
+
+        
+    </style>
+</head>
+<body>
+    <div class="envelope-container" onclick="openEnvelope()">
+        <!-- Click the envelope message -->
+        <div class="click-message">Click here to Open</div>
+        
+        <div class="envelope">
+            <div class="back">
+                <!-- Heart icon -->
+                <svg class="heart-icon" width="50" height="50" viewBox="0 0 24 24">
+                    <path fill="#FF0000" d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                    <path fill="none" d="M0 0h24v24H0z"/>
+                </svg>
+            </div>
+            <div class="front"></div>
+        </div>
+    </div>
+
+    <div class="letter" id="letter">
+        <h1>Happy 9th Monthsary!</h1>
+        <p>My Deary Kreszalyn!!!,</p>
+        <p>It's been an amazing 9 months of journey together, and I feel incredibly lucky to have you by my
+        side through ups and downs sige ka pakasalan na kita dyan eme. sorry sa mga tampuhan behh 
+        haaa kiss nalang and hug kita palagiii. 
+        <p>Wishing someday matupad natin mga goals and dreams 
+        natin!! and fighting lang sa acads makakaraos din tayo beh You bring so much joy and love into my life every day 
+        literal ikaw nalang talaga bumubuo sa araw ko so ayon ang ganda mo palagi kung gaano ako nagandahan sayo first time kita nakita 
+        ganon ka pa din kaganda sa paningin ko mas humigit pa ata eh 
+    Still who would've thought that "I've found a home in someone who came into my life unexpectedly."</p>
+        <p>Here's to many more months of love, laughter,  achievements sa buhay, goals, dreams and happy romantic sweet moments together
+             I love you so much my Bestfriend and Lover!🥂💕
+        <p>With all my love,<br>Gavin Kyle So POGI</p>
+    </div>
+
+    <script>
+function openEnvelope() {
+    var envelopeContainer = document.querySelector('.envelope-container');
+    var letter = document.getElementById('letter');
+    var clickMessage = document.querySelector('.click-message'); // Select the click message element
+
+    envelopeContainer.classList.add('open');
+    setTimeout(function () {
+        letter.style.display = 'block';
+        document.querySelector('.heart-icon').style.display = 'block';
+        clickMessage.style.opacity = '0'; // Apply the fade-out animation
+        clickMessage.style.transition = 'opacity 0.5s ease'; // Add transition for smooth animation
+    }, 500);
+}
+    </script>
+</body>
+</html>
